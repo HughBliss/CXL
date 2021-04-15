@@ -1,27 +1,32 @@
+import 'package:cxl/bloc/counter_cubit.dart';
 import 'package:cxl/ui/common/text.dart';
 import 'package:cxl/ui/components/primary_action_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
+  final String title;
+
   HomeScreen({
     Key? key,
     required this.title,
   }) : super(key: key);
 
-  final String title;
-
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => CounterCubit(),
+      child: HomeView(
+        title: title,
+      ),
+    );
+  }
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  int _counter = 0;
+class HomeView extends StatelessWidget {
+  final String title;
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+  const HomeView({Key? key, required this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
         preferredSize: Size.fromHeight(140.0),
         child: Center(
           child: Text(
-            widget.title,
+            title,
             style: CxlText.HeroHeading,
           ),
         ),
@@ -43,17 +48,33 @@ class _HomeScreenState extends State<HomeScreen> {
               'You have pushed the button this many times:',
               style: CxlText.Text,
             ),
-            Text(
-              '$_counter',
-              style: CxlText.SecondaryHeading,
+            BlocBuilder<CounterCubit, int>(
+              builder: (context, state) {
+                return Text(
+                  '$state',
+                  style: CxlText.SecondaryHeading,
+                );
+              },
             ),
           ],
         ),
       ),
-      floatingActionButton: PrimaryActionButton(
-        'Add',
-        icon: Icons.add,
-        callback: _incrementCounter,
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          PrimaryActionButton(
+            'Add',
+            icon: Icons.add,
+            callback: () => context.read<CounterCubit>().increment(),
+          ),
+          SizedBox(height: 8),
+          PrimaryActionButton(
+            'Remove',
+            icon: Icons.add,
+            callback: () => context.read<CounterCubit>().decrement(),
+          ),
+        ],
       ),
     );
   }
