@@ -1,3 +1,4 @@
+import 'package:cxl/router.dart' as Router;
 import 'package:cxl/services/navigator_service.dart';
 import 'package:cxl/ui/screens/home.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       navigatorKey: getIt<NavigatorService>().navigatorKey,
+      onGenerateRoute: Router.generateRoute,
       home: HomeScreen(
         title: 'Flutter Demo Home Page',
       ),
