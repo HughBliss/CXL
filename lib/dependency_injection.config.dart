@@ -7,6 +7,7 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
+import 'services/http_client.dart' as _i4;
 import 'services/navigator_service.dart'
     as _i3; // ignore_for_file: unnecessary_lambdas
 
@@ -16,5 +17,6 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
     {String? environment, _i2.EnvironmentFilter? environmentFilter}) {
   final gh = _i2.GetItHelper(get, environment, environmentFilter);
   gh.lazySingleton<_i3.NavigatorService>(() => _i3.NavigatorService());
+  gh.singleton<_i4.HttpClient>(_i4.HttpClient());
   return get;
 }
