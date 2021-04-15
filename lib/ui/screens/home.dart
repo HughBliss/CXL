@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(120.0),
+        preferredSize: Size.fromHeight(140.0),
         child: Center(
           child: Text(
             widget.title,
@@ -41,10 +41,11 @@ class _HomeScreenState extends State<HomeScreen> {
           children: <Widget>[
             Text(
               'You have pushed the button this many times:',
+              style: CxlText.Text,
             ),
             Text(
               '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+              style: CxlText.SecondaryHeading,
             ),
           ],
         ),
