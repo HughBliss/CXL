@@ -1,5 +1,8 @@
-import 'package:cxl/ui/common/colors.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:cxl/ui/common/colors.dart';
 
 class PrimaryActionButton extends StatelessWidget {
   final void Function() callback;
@@ -16,7 +19,7 @@ class PrimaryActionButton extends StatelessWidget {
   Text _text() {
     return Text(
       label,
-      style: TextStyle(
+      style: const TextStyle(
           fontSize: 16.0,
           fontFamily: 'Roboto',
           fontWeight: FontWeight.w700,
