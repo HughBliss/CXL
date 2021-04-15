@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 class PrimaryActionButton extends StatelessWidget {
   final void Function() callback;
   final String label;
-  final IconData icon;
+  final IconData? icon;
 
   const PrimaryActionButton(
     this.label, {
-    Key key,
-    this.callback,
+    Key? key,
+    required this.callback,
     this.icon,
   }) : super(key: key);
 
